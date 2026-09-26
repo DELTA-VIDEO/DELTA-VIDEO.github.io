@@ -57,7 +57,7 @@
       <h1 id="paper-title"><span class="hero-name">DELTA <span>VIDEO</span></span><span class="hero-title">Efficient Video Memory by<br>Learning Residual Updates</span></h1>
       <p class="authors">Anonymous authors <span aria-hidden="true">·</span> <span id="venue">ICLR submission</span></p>
       <div class="hero-actions" id="paper-links"><a class="button primary" href="#examples">Explore examples <span aria-hidden="true">↓</span></a><button class="button" disabled>Paper <span class="pending">pending</span></button><button class="button" disabled>Code <span class="pending">pending</span></button></div>
-      <p class="draft-note" id="draft-note">Preview version · Paper and code links pending.</p>
+      <p class="draft-note" id="draft-note" hidden></p>
       <figure class="teaser-shell">
         <div class="teaser-topline"><span><span class="tiny-delta" aria-hidden="true">Δ</span> <span id="teaser-heading">METHOD OVERVIEW</span></span><span id="teaser-kind">FIGURE 1</span></div>
         <div id="teaser-media"></div>
@@ -69,7 +69,6 @@
       <div class="section-kicker">01</div>
       <div class="overview-layout"><h2 id="overview-title">Abstract</h2><div><p class="body-copy" id="abstract"></p><p class="content-note" id="abstract-note" hidden>Abstract placeholder — the final paper abstract will appear here.</p></div></div>
       <div class="concept-strip" aria-label="Frame-wise residual memory update"><div><span class="concept-index">01</span><strong>Previous memory</strong><span class="concept-math">S<sub>t−1</sub></span></div><span class="operator" aria-hidden="true">+</span><div class="residual"><span class="concept-index">02</span><strong>Gated residual</strong><span class="concept-math">ΔS<sub>t</sub></span></div><span class="operator" aria-hidden="true">→</span><div><span class="concept-index">03</span><strong>Updated memory</strong><span class="concept-math">S<sub>t</sub></span></div></div>
-      <p class="content-note centered">Frame-wise gated residual updates to a fixed-size memory state.</p>
     </section>
 
     <section id="examples" class="gallery-section section" aria-labelledby="gallery-title">
@@ -99,7 +98,7 @@
  */
 window.PROJECT_DATA = {
   "venue": "ICLR submission",
-  "draft": true,
+  "draft": false,
   "paper": "",
   "code": "",
   "abstract": "World modeling requires maintaining persistent information about scenes and objects as the environment evolves. Causal streaming video generation offers a promising route toward this goal, yet limited attention windows restrict access to distant history, making long-term consistency difficult to maintain. Existing context-based memory methods extend this accessible history, but often retain redundant visual information across neighboring frames, leading to inefficient use of memory capacity. Efficiently retaining this history therefore requires exploiting the substantial visual redundancy across frames. We introduce Delta Video, a learnable online memory mechanism that learns residual memory updates, suppressing information already captured by the current state while preserving newly observed content. For memory updating, its frame-wise Delta rule predicts incoming visual representations from the current memory state and writes only the prediction residual, suppressing redundant updates for already well-represented information. Retrieved historical context is injected into attention layers to guide ongoing generation. To further teach the memory to handle redundant observations, we introduce redundancy-aware post-training that enforces consistency in both the recurrent memory state and its readout under constructed redundant history, encouraging stable and redundancy-aware memory preservation. On 30-second autoregressive generation, Delta Video improves Continuity of Memory by 14.1% over the strongest baseline. Controlled analyses further show that redundant observations induce 53.0% smaller changes in subsequent memory reads, providing direct evidence that Delta Video selectively suppresses already-represented information.",
