@@ -49,7 +49,7 @@
   <header class="site-header">
     <div class="nav-inner">
       <a href="#" class="brand" aria-label="Delta Video home"><span class="brand-symbol" aria-hidden="true">Δ</span> DELTA <span class="brand-light">VIDEO</span></a>
-      <nav aria-label="Main navigation"><a href="#overview">Abstract</a><a href="#examples">Examples</a><a href="#comparisons">Comparisons</a><a href="#results">Results</a></nav>
+      <nav aria-label="Main navigation"><a href="#overview">Abstract</a><a href="#examples">Examples</a><a href="#results">Results</a></nav>
       <span class="review-tag">Anonymous submission</span>
     </div>
   </header>
@@ -80,13 +80,13 @@
       </div>
     </section>
 
-    <section id="comparisons" class="container section" aria-labelledby="comparison-title">
+    <section id="comparisons" class="container section" aria-labelledby="comparison-title" hidden>
       <div class="section-heading"><div><div class="section-kicker">03</div><h2 id="comparison-title">Qualitative Comparisons</h2><p class="section-description">Memory consistency across methods under the same prompt.</p></div><div class="case-navigation"><button id="case-prev" class="icon-button" aria-label="Previous comparison">←</button><span id="comparison-count" aria-live="polite"></span><button id="case-next" class="icon-button" aria-label="Next comparison">→</button></div></div>
       <div class="comparison-shell"><div class="prompt-block"><span class="field-label">PROMPT</span><p id="comparison-prompt"></p></div><div class="comparison-grid" id="comparison-grid"></div>
       <div class="comparison-controls"><div class="playback-buttons"><button class="button small primary" id="compare-play" disabled>Play together</button><button class="button small" id="compare-reset" disabled>Restart</button></div><label class="speed-label">Speed <select id="compare-speed" aria-label="Comparison playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><div class="scrubber"><label for="compare-seek" class="sr-only">Shared playback position</label><input id="compare-seek" type="range" min="0" max="1" step="0.05" value="0" disabled><output id="compare-time">0:00 / 0:00</output></div></div><p id="comparison-status" class="comparison-status" role="status">Comparison videos are pending.</p></div>
     </section>
 
-    <section id="results" class="container section" aria-labelledby="results-title"><div class="section-heading"><div><div class="section-kicker">04</div><h2 id="results-title">Quantitative Results</h2><p class="section-description" id="results-note"></p></div></div><div class="table-scroll"><table id="results-table"></table></div><p class="content-note">Higher is better for all metrics. Bold indicates the best result.</p></section>
+    <section id="results" class="container section" aria-labelledby="results-title"><div class="section-heading"><div><div class="section-kicker">03</div><h2 id="results-title">Quantitative Results</h2><p class="section-description" id="results-note"></p></div></div><div class="table-scroll"><table id="results-table"></table></div><p class="content-note">Higher is better for all metrics. Bold indicates the best result.</p></section>
   </main>
 
   <footer class="container footer"><a class="brand" href="#"><span class="brand-symbol" aria-hidden="true">Δ</span> DELTA <span class="brand-light">VIDEO</span></a><p>Anonymous authors · Prepared for anonymous peer review</p><a href="#main">Back to top ↑</a></footer>
@@ -757,7 +757,7 @@ window.PROJECT_DATA = {
   }
 
   let activeFilter = "Long Video";
-  const categories = ["Long Video", "Memory"];
+  const categories = ["Long Video"];
   categories.forEach((category) => {
     const button = element("button", "filter", category);
     button.setAttribute("aria-pressed", String(category === activeFilter));
