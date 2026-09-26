@@ -37,6 +37,9 @@
 .method-point h3{font-size:16px;line-height:1.5}
 .method-point p{font-size:15px;line-height:1.8;color:var(--muted);margin-top:12px}
 .gallery-prompt{margin-top:12px;color:var(--muted);font-size:13px;line-height:1.65}
+.comparison-list{display:grid;gap:30px}
+.comparison-case{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.comparison-method video{object-fit:contain}
 @media(min-width:761px){.overview-layout{grid-template-columns:1fr 3fr;gap:48px}}
 @media(max-width:760px){.method-content{grid-template-columns:1fr;gap:24px}.gallery-prompt{font-size:12px}}
 
@@ -49,7 +52,7 @@
   <header class="site-header">
     <div class="nav-inner">
       <a href="#" class="brand" aria-label="Delta Video home"><span class="brand-symbol" aria-hidden="true">Δ</span> DELTA <span class="brand-light">VIDEO</span></a>
-      <nav aria-label="Main navigation"><a href="#overview">Abstract</a><a href="#examples">Examples</a><a href="#results">Results</a></nav>
+      <nav aria-label="Main navigation"><a href="#overview">Abstract</a><a href="#examples">Examples</a><a href="#comparisons">Comparison</a><a href="#results">Results</a></nav>
       <span class="review-tag">Anonymous submission</span>
     </div>
   </header>
@@ -80,13 +83,12 @@
       </div>
     </section>
 
-    <section id="comparisons" class="container section" aria-labelledby="comparison-title" hidden>
-      <div class="section-heading"><div><div class="section-kicker">03</div><h2 id="comparison-title">Qualitative Comparisons</h2><p class="section-description">Memory consistency across methods under the same prompt.</p></div><div class="case-navigation"><button id="case-prev" class="icon-button" aria-label="Previous comparison">←</button><span id="comparison-count" aria-live="polite"></span><button id="case-next" class="icon-button" aria-label="Next comparison">→</button></div></div>
-      <div class="comparison-shell"><div class="prompt-block"><span class="field-label">PROMPT</span><p id="comparison-prompt"></p></div><div class="comparison-grid" id="comparison-grid"></div>
-      <div class="comparison-controls"><div class="playback-buttons"><button class="button small primary" id="compare-play" disabled>Play together</button><button class="button small" id="compare-reset" disabled>Restart</button></div><label class="speed-label">Speed <select id="compare-speed" aria-label="Comparison playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><div class="scrubber"><label for="compare-seek" class="sr-only">Shared playback position</label><input id="compare-seek" type="range" min="0" max="1" step="0.05" value="0" disabled><output id="compare-time">0:00 / 0:00</output></div></div><p id="comparison-status" class="comparison-status" role="status">Comparison videos are pending.</p></div>
+    <section id="comparisons" class="container section" aria-labelledby="comparison-title">
+      <div class="section-heading"><div><div class="section-kicker">03</div><h2 id="comparison-title">Comparison</h2><p class="section-description">Long-term memory comparisons across three video generation models.</p></div></div>
+      <div id="comparison-list" class="comparison-list"></div>
     </section>
 
-    <section id="results" class="container section" aria-labelledby="results-title"><div class="section-heading"><div><div class="section-kicker">03</div><h2 id="results-title">Quantitative Results</h2><p class="section-description" id="results-note"></p></div></div><div class="table-scroll"><table id="results-table"></table></div><p class="content-note">Higher is better for all metrics. Bold indicates the best result.</p></section>
+    <section id="results" class="container section" aria-labelledby="results-title"><div class="section-heading"><div><div class="section-kicker">04</div><h2 id="results-title">Quantitative Results</h2><p class="section-description" id="results-note"></p></div></div><div class="table-scroll"><table id="results-table"></table></div><p class="content-note">Higher is better for all metrics. Bold indicates the best result.</p></section>
   </main>
 
   <footer class="container footer"><a class="brand" href="#"><span class="brand-symbol" aria-hidden="true">Δ</span> DELTA <span class="brand-light">VIDEO</span></a><p>Anonymous authors · Prepared for anonymous peer review</p><a href="#main">Back to top ↑</a></footer>
@@ -368,67 +370,85 @@ window.PROJECT_DATA = {
   ],
   "comparisons": [
     {
-      "id": "comparison-01",
-      "prompt": "The camera observes a red ceramic cup on a wooden table, explores the surrounding room, and returns to the same cup and table.",
+      "id": "comparison-toy-car",
       "methods": [
         {
-          "name": "Baseline A",
-          "src": "",
-          "poster": ""
+          "name": "LongLive1 (1.3B)",
+          "src": "media/comparison/toy_car-longlive1-1.3b.mp4",
+          "poster": "media/comparison/toy_car-longlive1-1.3b.webp"
         },
         {
-          "name": "Baseline B",
-          "src": "",
-          "poster": ""
+          "name": "LongLive2 (5B)",
+          "src": "media/comparison/toy_car-longlive2-5b.mp4",
+          "poster": "media/comparison/toy_car-longlive2-5b.webp"
         },
         {
           "name": "DELTA VIDEO (ours)",
-          "src": "",
-          "poster": "",
+          "src": "media/comparison/toy_car-delta-video.mp4",
+          "poster": "media/comparison/toy_car-delta-video.webp",
           "ours": true
         }
       ]
     },
     {
-      "id": "comparison-02",
-      "prompt": "A character wearing a green jacket walks through a garden, passes behind a stone arch, and reappears beside a fountain.",
+      "id": "comparison-duck",
       "methods": [
         {
-          "name": "Baseline A",
-          "src": "",
-          "poster": ""
+          "name": "LongLive1 (1.3B)",
+          "src": "media/comparison/duck-longlive1-1.3b.mp4",
+          "poster": "media/comparison/duck-longlive1-1.3b.webp"
         },
         {
-          "name": "Baseline B",
-          "src": "",
-          "poster": ""
+          "name": "LongLive2 (5B)",
+          "src": "media/comparison/duck-longlive2-5b.mp4",
+          "poster": "media/comparison/duck-longlive2-5b.webp"
         },
         {
           "name": "DELTA VIDEO (ours)",
-          "src": "",
-          "poster": "",
+          "src": "media/comparison/duck-delta-video.mp4",
+          "poster": "media/comparison/duck-delta-video.webp",
           "ours": true
         }
       ]
     },
     {
-      "id": "comparison-03",
-      "prompt": "An aerial camera moves along a rocky coastline, slowly turns toward the sea, and continues forward above the water.",
+      "id": "comparison-kite",
       "methods": [
         {
-          "name": "Baseline A",
-          "src": "",
-          "poster": ""
+          "name": "LongLive1 (1.3B)",
+          "src": "media/comparison/kite-longlive1-1.3b.mp4",
+          "poster": "media/comparison/kite-longlive1-1.3b.webp"
         },
         {
-          "name": "Baseline B",
-          "src": "",
-          "poster": ""
+          "name": "LongLive2 (5B)",
+          "src": "media/comparison/kite-longlive2-5b.mp4",
+          "poster": "media/comparison/kite-longlive2-5b.webp"
         },
         {
           "name": "DELTA VIDEO (ours)",
-          "src": "",
-          "poster": "",
+          "src": "media/comparison/kite-delta-video.mp4",
+          "poster": "media/comparison/kite-delta-video.webp",
+          "ours": true
+        }
+      ]
+    },
+    {
+      "id": "comparison-fox",
+      "methods": [
+        {
+          "name": "LongLive1 (1.3B)",
+          "src": "media/comparison/fox-longlive1-1.3b.mp4",
+          "poster": "media/comparison/fox-longlive1-1.3b.webp"
+        },
+        {
+          "name": "LongLive2 (5B)",
+          "src": "media/comparison/fox-longlive2-5b.mp4",
+          "poster": "media/comparison/fox-longlive2-5b.webp"
+        },
+        {
+          "name": "DELTA VIDEO (ours)",
+          "src": "media/comparison/fox-delta-video.mp4",
+          "poster": "media/comparison/fox-delta-video.webp",
           "ours": true
         }
       ]
@@ -685,14 +705,15 @@ window.PROJECT_DATA = {
   const visibilityObserver = new IntersectionObserver((entries) => {
     entries.forEach(({target, isIntersecting}) => {if (!isIntersecting) target.pause();});
   }, {threshold: 0.08});
-  function videoElement(item, {lazy = false, controls = true, loop = true, label = "Video example"} = {}) {
+  function videoElement(item, {lazy = false, controls = true, loop = true, autoplay = false, preload = "metadata", pauseWhenHidden = true, label = "Video example"} = {}) {
     const video = element("video");
     video.controls = controls;
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
     video.loop = loop;
-    video.preload = "metadata";
+    video.autoplay = autoplay;
+    video.preload = preload;
     video.setAttribute("aria-label", label);
     if (item.poster) video.poster = localPath(item.poster);
     if (lazy) {video.dataset.src = localPath(item.src); lazyObserver.observe(video);}
@@ -703,7 +724,7 @@ window.PROJECT_DATA = {
         video.insertAdjacentElement("afterend", element("p", "media-error", "This video could not be loaded. Please try again later."));
       }
     });
-    if (loop) visibilityObserver.observe(video);
+    if (loop && pauseWhenHidden) visibilityObserver.observe(video);
     return video;
   }
 
@@ -837,113 +858,42 @@ window.PROJECT_DATA = {
   });
   renderGallery();
 
-  let comparisonIndex = 0, comparisonVideos = [], playing = false, sharedDuration = 0, frameRequest = 0;
-  let comparisonEpoch = 0;
   function pauseComparison() {
-    playing = false;
-    comparisonVideos.forEach((video) => video.pause());
-    cancelAnimationFrame(frameRequest);
-    $("compare-play").textContent = "Play together";
+    $("comparison-list").querySelectorAll("video").forEach((video) => video.pause());
   }
-  function updateClock(time = 0) {
-    $("compare-time").textContent = clock(time) + " / " + clock(sharedDuration);
-    $("compare-seek").value = String(time);
+  function playComparisons() {
+    return Promise.allSettled(Array.from($("comparison-list").querySelectorAll("video"), (video) => {
+      video.muted = true;
+      return video.play();
+    }));
   }
-  function canSeek(video, time) {
-    for (let index = 0; index < video.seekable.length; index++) {
-      if (video.seekable.start(index) <= time && video.seekable.end(index) >= time) return true;
-    }
-    return false;
-  }
-  function updateSeekAvailability() {
-    const seekEnd = sharedDuration && comparisonVideos.length ? Math.min(sharedDuration, ...comparisonVideos.map((video) => video.seekable.length ? video.seekable.end(video.seekable.length - 1) : 0)) : 0;
-    $("compare-seek").disabled = seekEnd < 0.1;
-    $("compare-seek").max = String(seekEnd || 1);
-    if (sharedDuration) $("comparison-status").textContent = seekEnd >= sharedDuration - 0.1 ? "Playback is aligned to the shortest clip; longer clips pause at that endpoint." : "Videos are buffering. Seeking becomes available as the host makes the video seekable.";
-  }
-  function comparisonReady() {
-    const current = data.comparisons[comparisonIndex];
-    const ready = current && comparisonVideos.length === current.methods.length && comparisonVideos.length > 0 && comparisonVideos.every((v) => Number.isFinite(v.duration) && v.duration > 0 && !v.error);
-    sharedDuration = ready ? Math.min(...comparisonVideos.map((v) => v.duration)) : 0;
-    $("compare-play").disabled = !ready;
-    $("compare-reset").disabled = !ready;
-    $("comparison-status").textContent = ready ? "Playback is aligned to the shortest clip; longer clips pause at that endpoint." : "Comparison videos are pending. All methods must have a playable video to enable synchronized playback.";
-    updateClock();
-    updateSeekAvailability();
-    return ready;
-  }
-  function renderComparison() {
-    comparisonEpoch++;
+  function renderComparisons() {
     pauseComparison();
-    comparisonVideos = [];
-    $("comparison-grid").replaceChildren();
-    const item = data.comparisons[comparisonIndex];
-    $("case-prev").disabled = $("case-next").disabled = data.comparisons.length < 2;
-    $("comparison-count").textContent = item ? String(comparisonIndex + 1).padStart(2, "0") + " / " + String(data.comparisons.length).padStart(2, "0") : "0 / 0";
-    $("comparison-prompt").textContent = item ? item.prompt : "Comparison cases will be added here.";
-    if (item) item.methods.forEach((method) => {
-      const column = element("div", "comparison-method" + (method.ours ? " ours" : ""));
-      const label = element("div", "method-label");
-      label.append(element("span", "", method.name));
-      if (method.ours) label.append(element("span", "ours-badge", "OURS"));
-      column.append(label);
-      if (method.src) {
-        const video = videoElement(method, {lazy: true, controls: false, loop: false, label: method.name + " comparison"});
-        // Load near the viewport, then buffer for synchronized seeking.
-        video.preload = "auto";
-        video.playbackRate = Number($("compare-speed").value);
-        video.addEventListener("loadedmetadata", comparisonReady);
-        video.addEventListener("progress", updateSeekAvailability);
-        video.addEventListener("canplaythrough", updateSeekAvailability);
-        video.addEventListener("error", () => {pauseComparison();comparisonReady();});
-        video.addEventListener("ended", pauseComparison);
-        comparisonVideos.push(video);
-        column.append(video);
-      } else column.append(placeholder(method.ours ? "teal" : "blue"));
-      $("comparison-grid").append(column);
+    $("comparison-list").replaceChildren();
+    data.comparisons.forEach((item, index) => {
+      const row = element("article", "comparison-case");
+      row.setAttribute("aria-label", "Comparison case " + (index + 1));
+      const grid = element("div", "comparison-grid");
+      item.methods.forEach((method) => {
+        const column = element("div", "comparison-method" + (method.ours ? " ours" : ""));
+        const label = element("div", "method-label");
+        label.append(element("span", "", method.name));
+        if (method.ours) label.append(element("span", "ours-badge", "OURS"));
+        column.append(label);
+        if (method.src) column.append(videoElement(method, {controls: true, loop: true, autoplay: true, preload: "auto", pauseWhenHidden: false, label: method.name + " — comparison case " + (index + 1)}));
+        else column.append(placeholder(method.ours ? "teal" : "blue"));
+        grid.append(column);
+      });
+      row.append(grid);
+      $("comparison-list").append(row);
     });
-    comparisonReady();
   }
-  function playbackTick() {
-    if (!playing || !comparisonVideos.length) return;
-    const time = comparisonVideos[0].currentTime;
-    if (time >= sharedDuration - 0.04) {
-      pauseComparison();
-      comparisonVideos.forEach((video) => {if (canSeek(video, sharedDuration)) video.currentTime = sharedDuration;});
-      updateClock(sharedDuration);
-      return;
-    }
-    const baseRate = Number($("compare-speed").value);
-    comparisonVideos.slice(1).forEach((video) => {
-      const offset = video.currentTime - time;
-      if (Math.abs(offset) > 0.16 && canSeek(video, time)) {video.currentTime = time;video.playbackRate = baseRate;}
-      else video.playbackRate = Math.abs(offset) > 0.08 ? baseRate * (offset > 0 ? 0.96 : 1.04) : baseRate;
-    });
-    updateSeekAvailability();
-    updateClock(time);
-    frameRequest = requestAnimationFrame(playbackTick);
-  }
-  $("compare-play").addEventListener("click", async () => {
-    if (playing) {pauseComparison();return;}
-    const epoch = comparisonEpoch;
-    if (!comparisonReady()) return;
-    const time = comparisonVideos[0].currentTime >= sharedDuration - 0.1 ? 0 : comparisonVideos[0].currentTime;
-    comparisonVideos.forEach((video) => {if (time === 0 || canSeek(video, time)) video.currentTime = time;});
-    const results = await Promise.allSettled(comparisonVideos.map((video) => video.play()));
-    if (epoch !== comparisonEpoch) return;
-    if (results.some((result) => result.status === "rejected")) {pauseComparison();$("comparison-status").textContent = "Playback could not start. Please retry once the videos have loaded.";return;}
-    playing = true;
-    $("compare-play").textContent = "Pause together";
-    playbackTick();
-  });
-  $("compare-reset").addEventListener("click", () => {pauseComparison();comparisonVideos.forEach((video) => {video.currentTime = 0;});updateClock();});
-  $("compare-seek").addEventListener("input", () => {const time = Number($("compare-seek").value);comparisonVideos.forEach((video) => {video.currentTime = time;});updateClock(time);});
-  $("compare-speed").addEventListener("change", () => comparisonVideos.forEach((video) => {video.playbackRate = Number($("compare-speed").value);}));
-  $("case-prev").addEventListener("click", () => {comparisonIndex = (comparisonIndex - 1 + data.comparisons.length) % data.comparisons.length;renderComparison();});
-  $("case-next").addEventListener("click", () => {comparisonIndex = (comparisonIndex + 1) % data.comparisons.length;renderComparison();});
-  const comparisonObserver = new IntersectionObserver((entries) => {if (!entries[0].isIntersecting) pauseComparison();}, {threshold: 0.05});
-  comparisonObserver.observe($("comparisons"));
-  renderComparison();
+  renderComparisons();
+  playComparisons();
+  const comparisonAutoplayObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) playComparisons();
+  }, {threshold: 0.05});
+  comparisonAutoplayObserver.observe($("comparisons"));
 
   $("results-note").textContent = data.results.note;
   const head = element("thead"), body = element("tbody");
@@ -985,7 +935,10 @@ window.PROJECT_DATA = {
   });
   $("results-table").append(head, body);
 
-  document.addEventListener("visibilitychange", () => {if (document.hidden) {pauseAll();pauseComparison();}});
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {pauseAll();pauseComparison();}
+    else playComparisons();
+  });
   $("case-dialog").addEventListener("close", pauseComparison);
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(({target, isIntersecting}) => {
