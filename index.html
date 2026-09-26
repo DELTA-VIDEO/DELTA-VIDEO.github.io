@@ -36,8 +36,9 @@
 .method-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .method-point h3{font-size:16px;line-height:1.5}
 .method-point p{font-size:15px;line-height:1.8;color:var(--muted);margin-top:12px}
+.gallery-prompt{margin-top:12px;color:var(--muted);font-size:13px;line-height:1.65}
 @media(min-width:761px){.overview-layout{grid-template-columns:1fr 3fr;gap:48px}}
-@media(max-width:760px){.method-content{grid-template-columns:1fr;gap:24px}}
+@media(max-width:760px){.method-content{grid-template-columns:1fr;gap:24px}.gallery-prompt{font-size:12px}}
 
 </style>
   
@@ -805,6 +806,7 @@ window.PROJECT_DATA = {
         open.addEventListener("click", () => openCase(item));
         card.append(open);
       }
+      card.append(element("p", "gallery-prompt", item.prompt));
       $("gallery").append(card);
     });
     if (!items.length) $("gallery").append(element("p", "empty-state", "No examples in this category yet."));
