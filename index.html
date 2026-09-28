@@ -27,7 +27,15 @@
 #results-table tbody td{text-align:center;white-space:nowrap;font-weight:400}
 #results-table strong{font-weight:750}
 #results-table .result-ours th{font-weight:700}
-.method-content figure>a{display:block}
+.teaser-shell{margin:0}
+#teaser-media>a{display:block;background:#fff}
+#teaser-media img{display:block;width:100%;height:auto;background:#fff}
+.teaser-caption{line-height:1.65}
+.method-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.method-point h3{font-size:16px;line-height:1.5}
+.method-point p{font-size:15px;line-height:1.8;color:var(--muted);margin-top:12px}
+@media(min-width:761px){.overview-layout{grid-template-columns:1fr 3fr;gap:48px}}
+@media(max-width:760px){.method-content{grid-template-columns:1fr;gap:24px}}
 
 </style>
   
@@ -38,7 +46,7 @@
   <header class="site-header">
     <div class="nav-inner">
       <a href="#" class="brand" aria-label="Delta Video home"><span class="brand-symbol" aria-hidden="true">Δ</span> DELTA <span class="brand-light">VIDEO</span></a>
-      <nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#examples">Examples</a><a href="#comparisons">Comparisons</a><a href="#method">Method</a><a href="#results">Results</a></nav>
+      <nav aria-label="Main navigation"><a href="#overview">Abstract</a><a href="#examples">Examples</a><a href="#comparisons">Comparisons</a><a href="#method">Method</a><a href="#results">Results</a></nav>
       <span class="review-tag">Anonymous submission</span>
     </div>
   </header>
@@ -49,37 +57,37 @@
       <h1 id="paper-title"><span class="hero-name">DELTA <span>VIDEO</span></span><span class="hero-title">Efficient Video Memory by<br>Learning Residual Updates</span></h1>
       <p class="authors">Anonymous authors <span aria-hidden="true">·</span> <span id="venue">ICLR submission</span></p>
       <div class="hero-actions" id="paper-links"><a class="button primary" href="#examples">Explore examples <span aria-hidden="true">↓</span></a><button class="button" disabled>Paper <span class="pending">pending</span></button><button class="button" disabled>Code <span class="pending">pending</span></button></div>
-      <p class="draft-note" id="draft-note">Preview version · Video examples and abstract are placeholders.</p>
-      <div class="teaser-shell">
-        <div class="teaser-topline"><span><span class="tiny-delta" aria-hidden="true">Δ</span> A LONGER VIEW</span><span id="teaser-kind">FEATURED SEQUENCE</span></div>
+      <p class="draft-note" id="draft-note">Preview version · Video examples are placeholders.</p>
+      <figure class="teaser-shell">
+        <div class="teaser-topline"><span><span class="tiny-delta" aria-hidden="true">Δ</span> <span id="teaser-heading">METHOD OVERVIEW</span></span><span id="teaser-kind">FIGURE 1</span></div>
         <div id="teaser-media"></div>
-        <div class="teaser-caption"><span id="teaser-caption">A continuous sequence, from the first frame to the last.</span><span class="caption-label">DELTA VIDEO</span></div>
-      </div>
+        <figcaption class="teaser-caption"><span id="teaser-caption"></span></figcaption>
+      </figure>
     </section>
 
     <section id="overview" class="container overview section" aria-labelledby="overview-title">
-      <div class="section-kicker">01 / OVERVIEW</div>
-      <div class="overview-layout"><h2 id="overview-title">Learning the update.<br><span>Rethinking video memory.</span></h2><div><p class="body-copy" id="abstract"></p><p class="content-note" id="abstract-note">Abstract placeholder — the final paper abstract will appear here.</p></div></div>
-      <div class="concept-strip" aria-label="Conceptual memory update illustration"><div><span class="concept-index">01</span><strong>Previous memory</strong><span class="concept-math">M<sub>t−1</sub></span></div><span class="operator" aria-hidden="true">+</span><div class="residual"><span class="concept-index">02</span><strong>Learned residual</strong><span class="concept-math">Δ<sub>t</sub></span></div><span class="operator" aria-hidden="true">→</span><div><span class="concept-index">03</span><strong>Updated memory</strong><span class="concept-math">M<sub>t</sub></span></div></div>
-      <p class="content-note centered">Conceptual illustration based on the title.</p>
+      <div class="section-kicker">01</div>
+      <div class="overview-layout"><h2 id="overview-title">Abstract</h2><div><p class="body-copy" id="abstract"></p><p class="content-note" id="abstract-note" hidden>Abstract placeholder — the final paper abstract will appear here.</p></div></div>
+      <div class="concept-strip" aria-label="Frame-wise residual memory update"><div><span class="concept-index">01</span><strong>Previous memory</strong><span class="concept-math">S<sub>t−1</sub></span></div><span class="operator" aria-hidden="true">+</span><div class="residual"><span class="concept-index">02</span><strong>Gated residual</strong><span class="concept-math">ΔS<sub>t</sub></span></div><span class="operator" aria-hidden="true">→</span><div><span class="concept-index">03</span><strong>Updated memory</strong><span class="concept-math">S<sub>t</sub></span></div></div>
+      <p class="content-note centered">Frame-wise gated residual updates to a fixed-size memory state.</p>
     </section>
 
     <section id="examples" class="gallery-section section" aria-labelledby="gallery-title">
-      <div class="container"><div class="section-heading"><div><div class="section-kicker">02 / QUALITATIVE EXAMPLES</div><h2 id="gallery-title">See the sequence unfold.</h2><p class="section-description">Explore individual sequences and their prompts.</p></div><button class="button small" id="gallery-play" disabled>Play visible videos</button></div>
+      <div class="container"><div class="section-heading"><div><div class="section-kicker">02</div><h2 id="gallery-title">Video Examples</h2><p class="section-description">Long-term memory, continuous generation, and camera motion.</p></div><button class="button small" id="gallery-play" disabled>Play visible videos</button></div>
       <div class="gallery-toolbar"><div class="filters" id="gallery-filters" role="group" aria-label="Filter examples"></div><span id="case-count" class="case-count" aria-live="polite"></span></div>
       <div id="gallery" class="gallery-grid"></div><p class="sr-only" id="gallery-status" role="status"></p>
       </div>
     </section>
 
     <section id="comparisons" class="container section" aria-labelledby="comparison-title">
-      <div class="section-heading"><div><div class="section-kicker">03 / SIDE-BY-SIDE COMPARISON</div><h2 id="comparison-title">The same prompt. A closer look.</h2><p class="section-description">Compare methods at a shared playback time.</p></div><div class="case-navigation"><button id="case-prev" class="icon-button" aria-label="Previous comparison">←</button><span id="comparison-count" aria-live="polite"></span><button id="case-next" class="icon-button" aria-label="Next comparison">→</button></div></div>
+      <div class="section-heading"><div><div class="section-kicker">03</div><h2 id="comparison-title">Qualitative Comparisons</h2><p class="section-description">Memory consistency across methods under the same prompt.</p></div><div class="case-navigation"><button id="case-prev" class="icon-button" aria-label="Previous comparison">←</button><span id="comparison-count" aria-live="polite"></span><button id="case-next" class="icon-button" aria-label="Next comparison">→</button></div></div>
       <div class="comparison-shell"><div class="prompt-block"><span class="field-label">PROMPT</span><p id="comparison-prompt"></p></div><div class="comparison-grid" id="comparison-grid"></div>
       <div class="comparison-controls"><div class="playback-buttons"><button class="button small primary" id="compare-play" disabled>Play together</button><button class="button small" id="compare-reset" disabled>Restart</button></div><label class="speed-label">Speed <select id="compare-speed" aria-label="Comparison playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><div class="scrubber"><label for="compare-seek" class="sr-only">Shared playback position</label><input id="compare-seek" type="range" min="0" max="1" step="0.05" value="0" disabled><output id="compare-time">0:00 / 0:00</output></div></div><p id="comparison-status" class="comparison-status" role="status">Comparison videos are pending.</p></div>
     </section>
 
-    <section id="method" class="method-section section" aria-labelledby="method-title"><div class="container"><div class="section-heading"><div><div class="section-kicker">04 / METHOD</div><h2 id="method-title">Efficient memory through residual updates.</h2></div><span class="section-side-note">METHOD OVERVIEW</span></div><div id="method-content" class="method-content"></div></div></section>
+    <section id="method" class="method-section section" aria-labelledby="method-title"><div class="container"><div class="section-heading"><div><div class="section-kicker">04</div><h2 id="method-title">Method</h2><p class="section-description">A fixed-size recurrent memory for causal streaming video generation.</p></div></div><div id="method-content" class="method-content"></div></div></section>
 
-    <section id="results" class="container section" aria-labelledby="results-title"><div class="section-heading"><div><div class="section-kicker">05 / QUANTITATIVE RESULTS</div><h2 id="results-title">Quality and efficiency, together.</h2><p class="section-description" id="results-note"></p></div></div><div class="table-scroll"><table id="results-table"></table></div><p class="content-note">“—” indicates a result that has not been supplied. No measured results are shown in this preview.</p></section>
+    <section id="results" class="container section" aria-labelledby="results-title"><div class="section-heading"><div><div class="section-kicker">05</div><h2 id="results-title">Quantitative Results</h2><p class="section-description" id="results-note"></p></div></div><div class="table-scroll"><table id="results-table"></table></div><p class="content-note">Higher is better for all metrics. Bold indicates the best result.</p></section>
   </main>
 
   <footer class="container footer"><a class="brand" href="#"><span class="brand-symbol" aria-hidden="true">Δ</span> DELTA <span class="brand-light">VIDEO</span></a><p>Anonymous authors · Prepared for anonymous peer review</p><a href="#main">Back to top ↑</a></footer>
@@ -94,12 +102,15 @@ window.PROJECT_DATA = {
   "draft": true,
   "paper": "",
   "code": "",
-  "abstract": "DELTA VIDEO explores efficient video memory through learned residual updates. This project page will present the method, generated sequences, controlled comparisons, and measurements accompanying the paper.",
-  "abstractIsPlaceholder": true,
+  "abstract": "World modeling requires maintaining persistent information about scenes and objects as the environment evolves. Causal streaming video generation offers a promising route toward this goal, yet limited attention windows restrict access to distant history, making long-term consistency difficult to maintain. Existing context-based memory methods extend this accessible history, but often retain redundant visual information across neighboring frames, leading to inefficient use of memory capacity. Efficiently retaining this history therefore requires exploiting the substantial visual redundancy across frames. We introduce Delta Video, a learnable online memory mechanism that learns residual memory updates, suppressing information already captured by the current state while preserving newly observed content. For memory updating, its frame-wise Delta rule predicts incoming visual representations from the current memory state and writes only the prediction residual, suppressing redundant updates for already well-represented information. Retrieved historical context is injected into attention layers to guide ongoing generation. To further teach the memory to handle redundant observations, we introduce redundancy-aware post-training that enforces consistency in both the recurrent memory state and its readout under constructed redundant history, encouraging stable and redundancy-aware memory preservation. On 30-second autoregressive generation, Delta Video improves Continuity of Memory by 14.1% over the strongest baseline. Controlled analyses further show that redundant observations induce 53.0% smaller changes in subsequent memory reads, providing direct evidence that Delta Video selectively suppresses already-represented information.",
+  "abstractIsPlaceholder": false,
   "teaser": {
     "src": "",
     "poster": "",
-    "caption": "Featured long-video sequence · video pending"
+    "caption": "Overview of Delta Video. Delta Video retrieves persistent history through dual ΔQ/ΔO readout branches and performs frame-wise gated residual updates after each generated frame. Redundancy-aware supervision encourages stable memory states and readouts under redundant histories, enabling selective long-term memory updates.",
+    "figure": "media/method.webp",
+    "pdf": "media/method.pdf",
+    "alt": "Delta Video overview: redundancy-aware memory supervision, dual query and output readout branches, and frame-wise gated residual memory updates."
   },
   "gallery": [
     {
@@ -238,10 +249,20 @@ window.PROJECT_DATA = {
     }
   ],
   "method": {
-    "figure": "media/method.webp",
-    "pdf": "media/method.pdf",
-    "alt": "Delta Video overview: redundancy-aware memory supervision, dual query and output readout branches, and frame-wise gated residual memory updates.",
-    "caption": "Overview of Delta Video. Delta Video retrieves persistent history through dual ΔQ/ΔO readout branches and performs frame-wise gated residual updates after each generated frame. Redundancy-aware supervision encourages stable memory states and readouts under redundant histories, enabling selective long-term memory updates."
+    "points": [
+      {
+        "title": "Frame-wise Residual Memory Updates",
+        "text": "A fixed-size recurrent state predicts incoming visual representations and writes only the gated residual, limiting redundant updates while incorporating novel content."
+      },
+      {
+        "title": "Redundancy-Aware Memory Supervision",
+        "text": "State- and readout-consistency objectives stabilize memory under redundant histories, alongside the generation objective."
+      },
+      {
+        "title": "Dual-Path Memory Readout",
+        "text": "Query-side and output-side readout heads guide local attention and inject retrieved historical features into ongoing generation."
+      }
+    ]
   },
   "results": {
     "note": "Quantitative comparison with existing video generation methods. Long-term memory is evaluated on MemoBench-Auto and MemoBench-VQA, and general video quality on VBench-Long, using 30 s autoregressive generation. All metrics are reported on a 0–100 scale.",
@@ -515,7 +536,25 @@ window.PROJECT_DATA = {
     resourceButtons[index].replaceWith(link);
   });
   $("teaser-caption").textContent = data.teaser.caption;
-  if (data.teaser.src) $("teaser-media").append(videoElement(data.teaser, {label: "DELTA VIDEO featured sequence"}));
+  $("teaser-heading").textContent = data.teaser.figure ? "METHOD OVERVIEW" : "VIDEO GENERATION";
+  $("teaser-kind").textContent = data.teaser.figure ? "FIGURE 1" : "FEATURED SEQUENCE";
+  if (data.teaser.figure) {
+    const image = element("img");
+    image.src = localPath(data.teaser.figure);
+    image.alt = data.teaser.alt;
+    image.width = 2880;
+    image.height = 1541;
+    image.fetchPriority = "high";
+    if (data.teaser.pdf) {
+      const link = element("a");
+      link.href = localPath(data.teaser.pdf);
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.setAttribute("aria-label", "Open the method figure as a full-resolution PDF");
+      link.append(image);
+      $("teaser-media").append(link);
+    } else $("teaser-media").append(image);
+  } else if (data.teaser.src) $("teaser-media").append(videoElement(data.teaser, {label: "DELTA VIDEO featured sequence"}));
   else {
     const poster = element("div", "teaser-placeholder");
     poster.append(element("span", "placeholder-tag", "SEQUENCE PLACEHOLDER"));
@@ -726,28 +765,11 @@ window.PROJECT_DATA = {
   comparisonObserver.observe($("comparisons"));
   renderComparison();
 
-  if (data.method.figure) {
-    const figure = element("figure");
-    const image = element("img");
-    image.src = localPath(data.method.figure);
-    image.alt = data.method.alt;
-    image.loading = "lazy";
-    if (data.method.pdf) {
-      const link = element("a");
-      link.href = localPath(data.method.pdf);
-      link.target = "_blank";
-      link.rel = "noopener";
-      link.setAttribute("aria-label", "Open the method figure as a full-resolution PDF");
-      link.append(image);
-      figure.append(link);
-    } else figure.append(image);
-    figure.append(element("figcaption", "", data.method.caption));
-    $("method-content").append(figure);
-  } else {
-    const pending = element("div", "method-placeholder");
-    pending.append(element("span", "field-label", "ARCHITECTURE FIGURE PENDING"), element("span", "diagram-symbol", "M + Δ → M′"), element("p", "", data.method.caption));
-    $("method-content").append(pending);
-  }
+  data.method.points.forEach((point) => {
+    const item = element("div", "method-point");
+    item.append(element("h3", "", point.title), element("p", "", point.text));
+    $("method-content").append(item);
+  });
   $("results-note").textContent = data.results.note;
   const head = element("thead"), body = element("tbody");
   data.results.headerGroups.forEach((groups, index) => {
@@ -787,8 +809,6 @@ window.PROJECT_DATA = {
     body.append(tr);
   });
   $("results-table").append(head, body);
-
-  $("results").querySelector(".content-note").hidden = true;
 
   document.addEventListener("visibilitychange", () => {if (document.hidden) {pauseAll();pauseComparison();}});
   $("case-dialog").addEventListener("close", pauseComparison);
